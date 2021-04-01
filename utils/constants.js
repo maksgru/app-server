@@ -4,6 +4,7 @@ module.exports = {
     'updatedAt',
     'smsCode',
     'smsCodeExpiresAt',
-    'isUserConfirmed'
+    'isUserConfirmed',
+    'password'
   ]
 };

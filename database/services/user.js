@@ -2,6 +2,7 @@ const db = require('../models');
 const { USER_FIELDS_EXCLUDE } = require('../../utils/constants');
 
 module.exports = {
+  signIn: (query = {}) => db.user.findOne(query),
   findOneUser: (query = {}) => db.user.findOne({
     ...query,
     attributes: {

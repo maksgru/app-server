@@ -29,7 +29,7 @@ let config = {
       port: '4300'
     },
     mail: {
-      serviceEmail: 'fusion.team.llc@gmail.com',
+      serviceEmail: '',
       servicePassword: '',
       service: 'gmail'
     }

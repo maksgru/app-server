@@ -20,6 +20,12 @@ module.exports = {
       smsCode: {
         type: Sequelize.STRING
       },
+      email: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
+      },
       isUserConfirmed: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
