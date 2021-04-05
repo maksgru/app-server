@@ -6,3 +6,4 @@ public/uploads/*
 config/config.json
 /ecosystem.config.js
 /combined.log
+/upload
