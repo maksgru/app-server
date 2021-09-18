@@ -1,20 +1,5 @@
 const userService = require('../database/services/user');
 
-/**
- * @swagger
- * /api/users/{id}:
- *  get:
- *    description: Get user by id
- *    parameters:
- *      - in: path
- *        name: id
- *        required: true
- *        schema:
- *          type : integer
- *    responses:
- *       200:
- *         description: User
- */
 const getOneUser = async (req, res, next) => {
   try {
     const { id: userId } = req.params;
@@ -32,15 +17,6 @@ const getOneUser = async (req, res, next) => {
   }
 };
 
-/**
- * @swagger
- * /api/users:
- *  get:
- *    description: Get users
- *    responses:
- *       200:
- *         description: Users list
- */
 const getUsers = async (req, res, next) => {
   try {
     const users = await userService.findUsers();
@@ -50,28 +26,6 @@ const getUsers = async (req, res, next) => {
   }
 };
 
-/**
- * 
- * @swagger
- * /api/users/{id}:
- *   patch:
- *     summary: Uploads a file.
- *     consumes:
- *       - multipart/form-data
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type : integer
- *       - in: formData
- *         name: avatar
- *         type: file
- *         description: The file to upload.
- *     responses:
- *       200:
- *         description: success
- */
 const updateUser = async (req, res, next) => {
   try {
     const avatar = req.file;

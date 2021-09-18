@@ -3,32 +3,6 @@ const userService = require('../database/services/user');
 const { hash, createTokensPair } = require('../utils');
 const { USER_FIELDS_EXCLUDE } = require('../utils/constants');
 
-/**
- * @swagger
- * /api/auth/sign-up:
- *   post:
- *     parameters:
- *       - in: "body"
- *         name: "body"
- *         schema:
- *           type: object
- *           required:
- *           - email
- *           - password
- *           - firstName
- *           properties:
- *             email:
- *               type: string
- *             password:
- *               type: string
- *             firstName:
- *               type: string
- *             lastName:
- *               type: string
- *     responses:
- *       200:
- *         description: sign up
- */
 const signUp = async (req, res, next) => {
   try {
     const userData = req.body;
@@ -53,27 +27,6 @@ const signUp = async (req, res, next) => {
   }
 };
 
-/**
- * @swagger
- * /api/auth/sign-in:
- *   post:
- *     parameters:
- *       - in: "body"
- *         name: "body"
- *         schema:
- *           type: "object"
- *           required:
- *           - email
- *           - password
- *           properties:
- *             email:
- *               type: string
- *             password:
- *               type: string
- *     responses:
- *       200:
- *         description: sms code expiration
- */
 const signIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;

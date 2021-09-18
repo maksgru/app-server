@@ -26,6 +26,7 @@ let config = {
       refreshTokenExpiresIn: '7days',
       smsCodeExpiresIn: 36e5,
       url: 'http://localhost:4300',
+      siteAddress: 'http://localhost:3000',
       port: '4300'
     },
     mail: {
