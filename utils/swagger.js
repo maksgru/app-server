@@ -5,5 +5,5 @@ exports.swaggerOptions = {
       version: '1.0.0'
     }
   },
-  apis: ['./controllers/*.js']
+  apis: ['./routes/*.js']
 };

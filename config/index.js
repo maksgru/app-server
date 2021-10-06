@@ -22,8 +22,8 @@ let config = {
     common: {
       jwtSecret: 'dedio3jm',
       hashSecret: '2wh44k',
-      accessTokenExpiresIn: '2days',
-      refreshTokenExpiresIn: '7days',
+      accessTokenExpiresIn: 172800000,
+      refreshTokenExpiresIn: 604800000,
       smsCodeExpiresIn: 36e5,
       url: 'http://localhost:4300',
       siteAddress: 'http://localhost:3000',

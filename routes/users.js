@@ -1,7 +1,6 @@
 const multer = require('multer');
-const validate = require('../validators');
+const validator = require('../validators');
 const controller = require('../controllers/users');
-const { getOne } = require('../validators/users');
 
 const upload = multer({ dest: 'upload' });
 
@@ -33,7 +32,7 @@ module.exports = router => {
  *       200:
  *         description: User
  */
-  router.get('/:id', validate(getOne) ,controller.getOneUser);
+  router.get('/:id', validator.users.getOne ,controller.getOneUser);
 
   /**
  * 

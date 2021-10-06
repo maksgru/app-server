@@ -1,4 +1,3 @@
-/* eslint-disable */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('users', {
@@ -7,6 +6,9 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      avatar: {
+        type: Sequelize.STRING
       },
       firstName: {
         type: Sequelize.STRING
@@ -17,13 +19,15 @@ module.exports = {
       phone: {
         type: Sequelize.STRING
       },
-      smsCode: {
-        type: Sequelize.STRING
-      },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       password: {
+        type: Sequelize.STRING
+      },
+      googleId: {
         type: Sequelize.STRING
       },
       isUserConfirmed: {
@@ -31,8 +35,9 @@ module.exports = {
         allowNull: false,
         defaultValue: false
       },
-      smsCodeExpiresAt: {
-        type: Sequelize.DATE
+      role: {
+        type: Sequelize.ENUM('user', 'client', 'admin'),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

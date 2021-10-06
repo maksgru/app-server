@@ -1,12 +1,12 @@
-const { omit } = require('lodash');
+const { pick } = require('lodash');
 const userService = require('../database/services/user');
 const { hash, createTokensPair } = require('../utils');
-const { USER_FIELDS_EXCLUDE } = require('../utils/constants');
+const { USER_FIELDS_REGULAR } = require('../utils/constants');
 
 const signUp = async (req, res, next) => {
   try {
     const userData = req.body;
-    const [newUser, isCreated] = await userService.findOrCreate({
+    let [user, created] = await userService.findOrCreate({
       where: {
         email: userData.email
       },
@@ -14,11 +14,11 @@ const signUp = async (req, res, next) => {
         ...userData
       }
     });
-    if (!isCreated) {
+    if (!created) {
       throw { status: 400, message: 'Email already registered' };
     }
-    let user = newUser.toJSON();
-    user = omit(user, USER_FIELDS_EXCLUDE);
+    user = pick(user.toJSON(), USER_FIELDS_REGULAR);
+
     const tokens = createTokensPair(user);
 
     return res.json({ ...tokens, user });
@@ -30,14 +30,14 @@ const signUp = async (req, res, next) => {
 const signIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    let user = await userService.signIn({ where: { email } });
+    let user = await userService.findRawUser({ where: { email } });
     if (!user) throw { status: 404, message: 'User not found!' };
     if (!hash.compare(password, user.password)) {
       throw { status: 403, message: 'Wrong password' };
     }
-    user = user.toJSON();
-    user = omit(user, USER_FIELDS_EXCLUDE);
-    const tokens = createTokensPair(user);
+    user = pick(user.toJSON(), USER_FIELDS_REGULAR);
+
+    const tokens = createTokensPair(user.id);
 
     return res.json({ ...tokens, user });
   } catch (error) {
@@ -45,7 +45,29 @@ const signIn = async (req, res, next) => {
   }
 };
 
+const googleSignIn = async (req, res, next) => {
+  try {
+    const { email, ...defaults } = req.body;
+    let [user] = await userService.findOrCreate({
+      where: { email },
+      defaults
+    });
+    user = pick(user.toJSON(), USER_FIELDS_REGULAR);
+    const tokens = createTokensPair(user);
+    return res.json({ ...tokens, user });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const authorize = (req, res) => {
+  const user = pick(req.user, USER_FIELDS_REGULAR);
+  return res.json({ user });
+};
+
 module.exports = {
   signUp,
-  signIn
+  signIn,
+  googleSignIn,
+  authorize
 };

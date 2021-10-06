@@ -1,8 +1,9 @@
 const controller = require('../controllers/auth');
-const validate = require('../validators');
-const { signUp, signIn } = require('../validators/auth');
+const isAuthorized = require('../middlewares/isAuthorized');
+const validator = require('../validators');
 
 module.exports = router => {
+  router.get('/', isAuthorized, controller.authorize);
   /**
  * @swagger
  * /api/auth/sign-up:
@@ -29,7 +30,7 @@ module.exports = router => {
  *       200:
  *         description: sign up
  */
-  router.post('/sign-up', validate(signUp), controller.signUp);
+  router.post('/sign-up', validator.auth.signUp, controller.signUp);
 
   /**
  * @swagger
@@ -52,5 +53,6 @@ module.exports = router => {
  *       200:
  *         description: sms code expiration
  */
-  router.post('/sign-in', validate(signIn), controller.signIn);
+  router.post('/sign-in', validator.auth.signIn, controller.signIn);
+  router.post('/google-sign-in', controller.googleSignIn);
 };

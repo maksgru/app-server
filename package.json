@@ -18,7 +18,6 @@
   "dependencies": {
     "change-case": "^4.1.2",
     "cors": "^2.8.5",
-    "eslint-plugin-import": "^2.24.2",
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
     "jsonwebtoken": "^8.5.1",
@@ -27,6 +26,7 @@
     "nodemailer": "^6.5.0",
     "openapi-types": "^9.3.0",
     "pg": "^8.5.1",
+    "require-directory": "^2.1.1",
     "sequelize": "^6.5.1",
     "sequelize-cli": "^6.2.0",
     "swagger-jsdoc": "^6.1.0",
@@ -34,8 +34,11 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
-    "eslint": "^7.22.0",
-    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
     "nodemon": "^2.0.7"
   }
 }

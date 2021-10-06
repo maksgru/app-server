@@ -2,9 +2,14 @@ module.exports = {
   USER_FIELDS_EXCLUDE: [
     'createdAt',
     'updatedAt',
-    'smsCode',
-    'smsCodeExpiresAt',
-    'isUserConfirmed',
     'password'
+  ],
+  USER_FIELDS_REGULAR: [
+    'id',
+    'email',
+    'firstName',
+    'lastName',
+    'phone',
+    'avatar'
   ]
 };
