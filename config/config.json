@@ -1,0 +1,35 @@
+{
+  "development": {
+    "db": {
+      "username": "app-db",
+      "password": "password",
+      "database": "app-db",
+      "host": "localhost",
+      "dialect": "postgres"
+    },
+    "telegram": {
+      "botToken": "2056501916:AAGK1-9kiw41Vo7aPrxqh7M_yTNW3KkDnB0",
+      "chatId": "1279066614",
+      "webHookUrl": "https://6498-178-76-223-146.ngrok.io/api/messages/tlgrm-hook"
+    },
+    "whiteList": ["http://localhost:4300", "http://localhost:3000", "http://192.168.0.101:3000"]
+  },
+  "test": {
+    "db": {
+      "username": "app-user",
+      "password": "app-password",
+      "database": "app-db",
+      "host": "localhost",
+      "dialect": "postgres"
+    },
+    "common": {
+      "jwtSecret": "dedio3jm",
+      "hashSecret": "2wh44k",
+      "accessTokenExpiresIn": 172800000,
+      "refreshTokenExpiresIn": 604800000,
+      "siteAddress": "http://3.68.29.89",
+      "port": "4300"
+    },
+    "whiteList": ["http://3.68.29.89"]
+  }
+}
