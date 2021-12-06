@@ -5,7 +5,6 @@ const controller = require('../controllers/users');
 const upload = multer({ dest: 'upload' });
 
 module.exports = router => {
-
   /**
  * @swagger
  * /api/users:
@@ -32,10 +31,10 @@ module.exports = router => {
  *       200:
  *         description: User
  */
-  router.get('/:id', validator.users.getOne ,controller.getOneUser);
+  router.get('/:id', validator.users.getOne, controller.getOneUser);
 
   /**
- * 
+ *
  * @swagger
  * /api/users/{id}:
  *   patch:

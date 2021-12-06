@@ -13,7 +13,6 @@ module.exports = async (req, res, next) => {
     req.user = user.toJSON();
     return next();
   } catch (error) {
-    next(error);
-    // return res.status(401).json(error);
+    return res.status(401).json({ message: 'Token is broken' });
   }
 };

@@ -1,32 +1,47 @@
 const { Model } = require('sequelize');
 const { hash } = require('../../utils');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
- 
-    // eslint-disable-next-line no-unused-vars
-    static associate(models) {
-      // define association here
+    static associate (models) {
+      this.hasMany(models.project);
+      this.hasOne(models.device);
     }
   }
   User.init({
+    id: {
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     phone: DataTypes.STRING,
-    smsCode: DataTypes.STRING,
-    email: DataTypes.STRING,
+    avatar: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      unique: true
+    },
+    googleId: DataTypes.STRING,
     password: DataTypes.STRING,
     isUserConfirmed: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false
     },
-    smsCodeExpiresAt: DataTypes.DATE
+    role: {
+      type: DataTypes.ENUM('unknown', 'user', 'client', 'admin', 'bot'),
+      allowNull: false,
+      defaultValue: 'user'
+    }
   }, {
     sequelize,
-    modelName: 'user',
+    modelName: 'user'
   });
   User.addHook('beforeCreate', user => {
-    user.password = hash.generate(user.password);
+    if (user.password) {
+      user.password = hash.generate(user.password);
+    }
   });
   return User;
 };

@@ -1,6 +1,6 @@
 const { validationResult, matchedData } = require('express-validator');
 /**
- * validator[fileName][validatorName]
+ * validator.fileName.validatorName
  */
 const validator = require('require-directory')(module);
 

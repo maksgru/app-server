@@ -11,5 +11,7 @@ module.exports = {
     'lastName',
     'phone',
     'avatar'
-  ]
+  ],
+  IO: 'IO',
+  TELEGRAM_BOT_ID: 'TELEGRAM_BOT_ID'
 };

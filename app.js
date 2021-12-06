@@ -3,6 +3,7 @@ const cors = require('cors');
 const config = require('./config');
 const errorHandler = require('./utils/errorHandler');
 const routes = require('./routes');
+const initialize = require('./utils/initialize');
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(cors({
-  origin: config.common.siteAddress,
+  origin: config.whiteList,
   credentials: true
 }));
 
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 });
 
 routes(app);
+initialize(app);
 
 app.use((err, req, res, next) => errorHandler(err, req, res, next));
 

@@ -2,6 +2,7 @@ const { pick } = require('lodash');
 const userService = require('../database/services/user');
 const { hash, createTokensPair } = require('../utils');
 const { USER_FIELDS_REGULAR } = require('../utils/constants');
+const getImageBylink = require('../utils/getImageBylink');
 
 const signUp = async (req, res, next) => {
   try {
@@ -48,6 +49,10 @@ const signIn = async (req, res, next) => {
 const googleSignIn = async (req, res, next) => {
   try {
     const { email, ...defaults } = req.body;
+    const { avatar } = defaults;
+    if (avatar) {
+      defaults.avatar = getImageBylink(avatar);
+    }
     let [user] = await userService.findOrCreate({
       where: { email },
       defaults

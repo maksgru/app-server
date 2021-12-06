@@ -21,7 +21,6 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
         unique: true
       },
       password: {
@@ -36,7 +35,7 @@ module.exports = {
         defaultValue: false
       },
       role: {
-        type: Sequelize.ENUM('user', 'client', 'admin'),
+        type: Sequelize.ENUM('unknown', 'user', 'client', 'admin', 'bot'),
         allowNull: false
       },
       createdAt: {
